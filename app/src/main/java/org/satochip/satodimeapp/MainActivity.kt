@@ -12,12 +12,16 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.observeAsState
 import androidx.compose.ui.Modifier
 import com.google.android.play.core.review.ReviewManagerFactory
 import org.satochip.satodimeapp.ui.components.shared.SatoToast
+import org.satochip.satodimeapp.ui.components.shared.NfcDialog
 import org.satochip.satodimeapp.ui.theme.SatoGreen
 import org.satochip.satodimeapp.ui.theme.SatodimeTheme
 import org.satochip.satodimeapp.util.internetconnection.ConnectionChecker
+import org.satochip.satodimeapp.viewmodels.SharedViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 
 class MainActivity : ComponentActivity() {
 
@@ -37,6 +41,7 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             SatodimeTheme {
+                val sharedViewModel: SharedViewModel = viewModel()
                 val status by connectionChecker.observe().collectAsState(
                     initial = ConnectionChecker.InternetStatus.Available
                 )
@@ -67,6 +72,20 @@ class MainActivity : ComponentActivity() {
                             icon = R.drawable.error_cross
                         )
                         prevStatus = status
+                    }
+                    
+                    // NFC Dialog
+                    val showNfcDialog by sharedViewModel.showNfcDialog.observeAsState(initial = false)
+                    if (showNfcDialog) {
+                        NfcDialog(
+                            onDismiss = { sharedViewModel.dismissNfcDialog() },
+                            onOpenSettings = {
+                                // Open NFC settings
+                                val intent = android.content.Intent(android.provider.Settings.ACTION_NFC_SETTINGS)
+                                startActivity(intent)
+                                sharedViewModel.dismissNfcDialog()
+                            }
+                        )
                     }
                 }
             }

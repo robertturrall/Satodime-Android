@@ -56,6 +56,7 @@ import org.satochip.satodimeapp.ui.theme.DarkBlue
 import org.satochip.satodimeapp.ui.theme.LightGreen
 import org.satochip.satodimeapp.ui.theme.SatodimeTheme
 
+
 @Composable
 fun AuthenticCardView(navController: NavController) {
     val context = LocalContext.current

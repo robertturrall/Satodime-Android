@@ -191,4 +191,7 @@ To facilitate maintenance, keep same key name whenever possible
     <string name="buy">Buy</string>
     <string name="buyInfo">This service is provided by PAYBIS POLAND Sp. z o.o. You will be redirected to Paybis.com to purchase your currencies.</string>
     <string name="onboardingVideo">https://youtu.be/lVrKgzak2Bc</string>
+    <string name="nfc_disabled_title">NFC is Disabled</string>
+    <string name="nfc_disabled_message">NFC is not enabled on your device. Please enable NFC to use this feature.</string>
+    <string name="open_settings">Open Settings</string>
 </resources>
