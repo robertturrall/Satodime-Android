@@ -12,7 +12,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.runtime.observeAsState
 import androidx.compose.ui.Modifier
 import com.google.android.play.core.review.ReviewManagerFactory
 import org.satochip.satodimeapp.ui.components.shared.SatoToast
@@ -75,7 +74,7 @@ class MainActivity : ComponentActivity() {
                     }
                     
                     // NFC Dialog
-                    val showNfcDialog by sharedViewModel.showNfcDialog.observeAsState(initial = false)
+                    val showNfcDialog by sharedViewModel.showNfcDialog.collectAsState()
                     if (showNfcDialog) {
                         NfcDialog(
                             onDismiss = { sharedViewModel.dismissNfcDialog() },

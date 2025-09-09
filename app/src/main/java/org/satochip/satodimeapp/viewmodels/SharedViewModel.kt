@@ -16,14 +16,15 @@ import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.CreationExtras
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
@@ -78,8 +79,11 @@ class SharedViewModel(app: Application) : AndroidViewModel(app) {
     var updateVaultsJob: Job? = null
 
     // NFC status tracking
-    val isNfcAvailable = MutableLiveData<Boolean>()
-    val showNfcDialog = MutableLiveData<Boolean>()
+//    private val _isNfcAvailable = MutableStateFlow(false)
+//    val isNfcAvailable: StateFlow<Boolean> = _isNfcAvailable.asStateFlow()
+    private val _showNfcDialog = MutableStateFlow(false)
+    val showNfcDialog: StateFlow<Boolean> = _showNfcDialog.asStateFlow()
+
 
     init {
         NFCCardService.context = getApplication<Application>().applicationContext
@@ -119,39 +123,39 @@ class SharedViewModel(app: Application) : AndroidViewModel(app) {
             }
         }
         // Check NFC availability on initialization
-        checkNfcAvailability()
+        checkNfcAvailability(null)
     }
 
-    private fun checkNfcAvailability() {
-        val nfcAdapter = NfcAdapter.getDefaultAdapter(context)
-        val nfcAvailable = nfcAdapter != null && nfcAdapter.isEnabled
-        isNfcAvailable.postValue(nfcAvailable)
-    }
+    private fun checkNfcAvailability(activity: Activity?): Boolean {
 
-    private fun ensureNfcAvailable(activity: Activity): Boolean {
-        val nfcAdapter = NfcAdapter.getDefaultAdapter(activity)
+        val nfcAdapter = if (activity == null) {
+            NfcAdapter.getDefaultAdapter(context)
+        } else {
+            NfcAdapter.getDefaultAdapter(activity)
+        }
+
         val nfcAvailable = nfcAdapter != null && nfcAdapter.isEnabled
 
         if (!nfcAvailable) {
-            showNfcDialog.postValue(true)
+            _showNfcDialog.value = true
             return false
         }
         return true
     }
 
     fun dismissNfcDialog() {
-        showNfcDialog.postValue(false)
+        _showNfcDialog.value = false
     }
 
     // Card actions
     fun scanCard(activity: Activity) {
-        if (!ensureNfcAvailable(activity)) return
+        if (!checkNfcAvailability(activity)) return
         NFCCardService.actionType = NfcActionType.ScanCard
         scanCardForAction(activity)
     }
 
     fun takeOwnership(activity: Activity) {
-        if (!ensureNfcAvailable(activity)) return
+        if (!checkNfcAvailability(activity)) return
         NFCCardService.actionType = NfcActionType.TakeOwnership
         scanCardForAction(activity)
     }
@@ -161,7 +165,7 @@ class SharedViewModel(app: Application) : AndroidViewModel(app) {
     }
 
     fun releaseOwnership(activity: Activity) {
-        if (!ensureNfcAvailable(activity)) return
+        if (!checkNfcAvailability(activity)) return
         NFCCardService.actionType = NfcActionType.ReleaseOwnership
         scanCardForAction(activity)
     }
@@ -174,7 +178,7 @@ class SharedViewModel(app: Application) : AndroidViewModel(app) {
         isTestnet: Boolean,
         entropyBytes: ByteArray
     ) {
-        if (!ensureNfcAvailable(activity)) return
+        if (!checkNfcAvailability(activity)) return
         SatoLog.d(TAG, "sealSlot START slot: ${index}")
         NFCCardService.actionType = NfcActionType.SealSlot
         NFCCardService.actionIndex = index
@@ -188,7 +192,7 @@ class SharedViewModel(app: Application) : AndroidViewModel(app) {
 
     // assert 0 <= index < cardSlots.size
     fun unsealSlot(activity: Activity, index: Int) {
-        if (!ensureNfcAvailable(activity)) return
+        if (!checkNfcAvailability(activity)) return
         NFCCardService.actionType = NfcActionType.UnsealSlot
         NFCCardService.actionIndex = index
         scanCardForAction(activity)
@@ -196,14 +200,14 @@ class SharedViewModel(app: Application) : AndroidViewModel(app) {
 
     // assert 0 <= index < cardSlots.size
     fun resetSlot(activity: Activity, index: Int) {
-        if (!ensureNfcAvailable(activity)) return
+        if (!checkNfcAvailability(activity)) return
         NFCCardService.actionType = NfcActionType.ResetSlot
         NFCCardService.actionIndex = index
         scanCardForAction(activity)
     }
 
     fun recoverSlotPrivkey(activity: Activity, index: Int) {
-        if (!ensureNfcAvailable(activity)) return
+        if (!checkNfcAvailability(activity)) return
         SatoLog.d(TAG, "recoverSlotPrivkey START slot: ${index}")
         NFCCardService.actionType = NfcActionType.GetPrivkey
         NFCCardService.actionIndex = index
