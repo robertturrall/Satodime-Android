@@ -38,8 +38,8 @@ To facilitate maintenance, keep same key name whenever possible
     <string name="satodimeLetsYou">Satodime le permite crear fácilmente bóvedas para almacenar sus criptomonedas. Soporta los criptoactivos más innovadores.</string>
     <string name="allOurProducts">Todos nuestros\nproductos</string>
     <string name="vaultSuccessfullyUnseal">Bóveda desellada exitosamente</string>
-    <string name="vaultSuccessfullyReset">Bóveda REINICIADA exitosamente.</string>
-    <string name="youCanNowCreateAndSeal">Ahora puede CREAR y SELLAR una nueva bóveda.</string>
+    <string name="vaultSuccessfullyReset">Bóveda <b>REINICIADA</b> exitosamente.</string>
+    <string name="youCanNowCreateAndSeal">Ahora puede <b>CREAR</b> y <b>SELLAR</b> una nueva bóveda.</string>
 <!--    <string name="vault_cap">Vault</string>-->
 <!--    <string name="successfully">" successfully "</string>-->
 <!--    <string name="reset">RESET</string>-->
@@ -50,7 +50,7 @@ To facilitate maintenance, keep same key name whenever possible
 <!--    <string name="a_new">" a new "</string>-->
     <string name="backToMyVaults">Volver a mis bóvedas</string>
     <string name="warning">Advertencia</string>
-    <string name="youAreAboutToReset">Está a punto de REINICIAR la siguiente bóveda de criptomonedas.</string>
+    <string name="youAreAboutToReset">Está a punto de <b>REINICIAR</b> la siguiente bóveda de criptomonedas.</string>
     <string name="resettingThisCryptoVaultWill">Reiniciar esta bóveda eliminará completa e irrevocablemente la clave privada correspondiente de su tarjeta.</string>
     <string name="resetBtn">Reiniciar</string>
     <string name="actionCancelled">Acción cancelada</string>
@@ -80,7 +80,7 @@ To facilitate maintenance, keep same key name whenever possible
     <string name="transferOwnershipDescription">¡Por favor tenga en cuenta!\n\nEsta operación libera la propiedad de la tarjeta. La próxima persona que escanee la tarjeta se convertirá en su propietario.\n\nSolo el propietario de la tarjeta puede realizar operaciones sensibles (sellado-desellado-reinicio) en el dispositivo móvil.\n\nHaga clic en Transferir para continuar,\no en Cancelar para renunciar.</string>
     <string name="youCanNowViewThePrivateKey">Ahora puede ver la clave privada correspondiente e importarla en otra billetera.</string>
     <string name="showThePrivateKey">Mostrar la clave privada</string>
-    <string name="youAreAboutToUnseal">Está a punto de DESELLAR la siguiente bóveda de criptomonedas.</string>
+    <string name="youAreAboutToUnseal">Está a punto de <b>DESELLAR</b> la siguiente bóveda de criptomonedas.</string>
     <string name="unsealingThisCryptoVaultWillReveal">Desellar esta bóveda de criptomonedas revelará la clave privada correspondiente.</string>
 <!--    <string name="unsealing">Unsealing</string>-->
 <!--    <string name="this_crypto_vault_will_reveal_the_corresponding_private_key">" this crypto vault will reveal the corresponding private key."</string>-->
