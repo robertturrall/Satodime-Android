@@ -2,11 +2,11 @@
 <resources>
     <string name="app_name">Satodime</string>
     <string name="takeTheOwnershipTitle">Besitz übertragen</string>
-    <string name="takeTheOwnershipDescription">Um sensible Aktionen auf der Karte (Versiegeln - Entsiegeln - Reset) auszuführen, musst du den Besitz übernehmen.\\n\\nDieses Recht ist jederzeit in den App-Optionen widerrufbar und übertragbar.\\n\\nTippe auf Annehmen, um den Besitz zu übernehmen,\\noder Abbrechen, um zu verzichten.</string>
+    <string name="takeTheOwnershipDescription">Um sensible Aktionen auf der Karte (Versiegeln - Entsiegeln - Reset) auszuführen, musst du den Besitz übernehmen.\n\nDieses Recht ist jederzeit in den App-Optionen widerrufbar und übertragbar.\n\nTippe auf Annehmen, um den Besitz zu übernehmen,\noder Abbrechen, um zu verzichten.</string>
     <string name="authenticationSuccessTitle">Karte authentifiziert!</string>
     <string name="authenticationSuccessText">Diese Karte wurde von Satochip ausgegeben. Du kannst sie sicher verwenden.</string>
     <string name="certDetails">Zertifikatsdetails</string>
-    <string name="copyToClipboard">Kopieren</string>
+    <string name="copyToClipboard">In Zwischenablage kopieren</string>
     <string name="cardInfo">Karteninfo</string>
     <string name="cardOwnershipStatus">Besitzstatus</string>
     <string name="youAreTheCardOwner">Du bist Besitzer:in</string>
@@ -47,7 +47,7 @@
     <string name="showEntropy">Entropie anzeigen</string>
     <string name="howDoiExportPrivateKey">Wie exportiere ich meinen privaten Schlüssel?</string>
     <string name="transferOwner">Besitz übertragen</string>
-    <string name="transferOwnershipDescription">Achtung!\n\nDiese Aktion gibt den Besitz der Karte frei. Die nächste Person, die die Karte scannt, wird Besitzer:in.\n\nNur der/die Besitzer:in kann sensible Aktionen (Versiegeln-Entsiegeln-Reset) ausführen.\n\nTippe auf Übertragen, um fortzufahren,\noder Abbrechen, um zu verzichten.</string>
+    <string name="transferOwnershipDescription">Bitte beachten!\n\nDiese Aktion gibt den Besitz der Karte frei. Die nächste Person, die die Karte scannt, wird Besitzer:in.\n\nNur der/die Besitzer:in kann sensible Aktionen (Versiegeln-Entsiegeln-Reset) ausführen.\n\nTippe auf Übertragen, um fortzufahren,\noder Abbrechen, um zu verzichten.</string>
     <string name="youCanNowViewThePrivateKey">Du kannst jetzt den privaten Schlüssel anzeigen und in eine andere Wallet importieren.</string>
     <string name="showThePrivateKey">Privaten Schlüssel anzeigen</string>
     <string name="youAreAboutToUnseal">Du bist dabei, folgenden Krypto-Tresor zu ENTSIEGELN.</string>
@@ -94,7 +94,7 @@
     <string name="moreInfo">Mehr Infos</string>
     <string name="videoInfo">Video-Tutorial ansehen</string>
     <string name="ownershipText">Du bist nicht Besitzer:in dieser Karte und kannst daher keine sensiblen Aktionen ausführen:\n- Erstellen &amp; versiegeln\n- Entsiegeln\n- Löschen\n\nMehr Infos zur Besitzübernahme findest du hier.</string>
-    <string name="close">Schliessen</string>
+    <string name="close">Schließen</string>
     <string name="transferBtn">Übertragen</string>
     <string name="howToUse">So nutzt du Satodime</string>
     <string name="termsOfService">Nutzungsbedingungen</string>
